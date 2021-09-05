@@ -1,0 +1,13 @@
+for( $i=0; $i<3; ++$i )
+{
+    polySphere -radius (100 - $i*20) -subdivisionsX 20 -subdivisionsY 20 -ax 0 1 0 -createUVs 1 -ch 1;
+    move -r 0 ($i*100) 0;
+    if ($i<2){
+        polyCylinder -r 10 -h 5 -sx 20 -sy 1 -sz 1 -ax 1 0 0 -rcp 0 -cuv 3 -ch 1;
+        move -r (100 - $i*20) ($i*100) 0;   
+        }
+}
+polyCone -r 10 -h 100 -sx 20 -sy 1 -sz 0 -ax 1 0 0 -rcp 0 -cuv 3 -ch 1;
+move -r 80 200 0;
+polyCylinder -r 40 -h 5 -sx 20 -sy 1 -sz 2 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r 0 250 0;
