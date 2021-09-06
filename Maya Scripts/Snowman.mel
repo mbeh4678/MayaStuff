@@ -1,4 +1,4 @@
-for( $k=0; $k<1; ++$k )
+for( $k=0; $k<20; ++$k )
 {
     for( $i=0; $i<3; ++$i )
     {
@@ -15,5 +15,9 @@ for( $k=0; $k<1; ++$k )
     move -r 0 250 0;
     select ("Snowman"+($k+1)+"_Hat").f[80:99];
     scale -r -p -1.90735e-06cm 252.5cm -3.8147e-06cm 1.497407 1.497407 1.497407 ;
-    polyExtrudeFacet -keepFacesTogether 1 -ltz 20 ("Snowman"+($k+1)+"_Hat").f[80:99];
-} //                                 I NEED TO FIX THIS ^^^^^^^^^^^^^^^
+    polyExtrudeFacet -keepFacesTogether 1 -ltz 20 (("Snowman"+($k+1)+"_Hat")+".f[80:99]");
+    select -r ("Snowman"+($k+1)+"*");
+    move -r  0 0 ($k*150);
+    group -name ("Snowman"+($k+1));
+    
+}
