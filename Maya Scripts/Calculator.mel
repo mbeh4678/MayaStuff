@@ -1,0 +1,102 @@
+
+global proc float Add(float $nums[])
+{
+    int $len = size($nums);
+    float $sum = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $sum += $nums[$i];
+    }
+    return $sum;
+}
+
+Add({10,1,1});
+
+global proc float Diff(float $nums[])
+{
+    int $len = size($nums);
+    float $diff = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $diff -= $nums[$i];
+    }
+    return $diff;
+}
+
+Diff({-10,5});
+
+global proc float Mult(float $nums[])
+{
+    int $len = size($nums);
+    float $pro = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $pro *= $nums[$i];
+    }
+    return $pro;
+}
+
+Mult({-2,1});
+
+global proc float Div(float $nums[])
+{
+    int $len = size($nums);
+    float $quotient = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $quotient /= $nums[$i];
+    }
+    return $quotient;
+}
+
+Div({48,2,2});
+
+global proc float Expo(float $nums[])
+{
+    int $len = size($nums);
+    float $power = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $power = `pow $power $nums[$i]`;
+    }
+    return $power;
+}
+
+Expo({3,3,2});
+
+global proc float Mean(float $nums[])
+{
+    int $len = size($nums);
+    float $sum = $nums[0];
+    for ($i = 1; $i < $len; $i++)
+    {
+        $sum += $nums[$i];
+    }
+    float $mean = $sum / $len;
+    return $mean;
+}
+
+Mean({654,132,98});
+
+global proc float Median(float $nums[])
+{
+    $nums = `sort $nums`;
+    int $len = size($nums);
+    if ($len % 2 == 0)
+    {
+        return (($nums[$len/2] + $nums[$len/2-1])/2);
+    }
+    else
+    {
+        return $nums[($len/2)];
+    }
+}
+
+Median({1,5,11,1,1,10,11,11})
+
+global proc float Mode(flost $nums[])
+{
+    
+
+
+}
