@@ -120,4 +120,4 @@ global proc float Mode(float $nums[])
     return $value;
 }
 
-Mode({2,4,1,5,3,6,6,10,10,10,10});
+Mode({1,2,4,0,4});
