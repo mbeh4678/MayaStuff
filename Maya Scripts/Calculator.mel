@@ -9,8 +9,6 @@ global proc float Add(float $nums[])
     return $sum;
 }
 
-Add({10,1,1});
-
 global proc float Diff(float $nums[])
 {
     float $diff = $nums[0];
@@ -20,8 +18,6 @@ global proc float Diff(float $nums[])
     }
     return $diff;
 }
-
-Diff({-10,5});
 
 global proc float Mult(float $nums[])
 {
@@ -33,8 +29,6 @@ global proc float Mult(float $nums[])
     return $pro;
 }
 
-Mult({-2,1});
-
 global proc float Div(float $nums[])
 {
     float $quotient = $nums[0];
@@ -44,8 +38,6 @@ global proc float Div(float $nums[])
     }
     return $quotient;
 }
-
-Div({48,2,2});
 
 global proc float Expo(float $nums[])
 {
@@ -57,8 +49,6 @@ global proc float Expo(float $nums[])
     return $power;
 }
 
-Expo({3,3,2});
-
 global proc float Mean(float $nums[])
 {
     float $sum = $nums[0];
@@ -69,8 +59,6 @@ global proc float Mean(float $nums[])
     float $mean = $sum / size($nums);
     return $mean;
 }
-
-Mean({654,132,98});
 
 global proc float Median(float $nums[])
 {
@@ -84,9 +72,6 @@ global proc float Median(float $nums[])
         return $nums[(size($nums)/2)];
     }
 }
-
-Median({1,5,11,1,1,10,11,11});
-
 
 global proc float Mode(float $nums[])
 {
@@ -120,4 +105,41 @@ global proc float Mode(float $nums[])
     return $value;
 }
 
-Mode({1,2,4,0,4});
+global proc Calc(string $opp, float $nums[]){
+    switch($opp){
+        case "Add":
+            print("The sum of " + floatArrayToString($nums, ", ") + " is " + Add($nums)+"\n");
+            break;
+        case "Diff":
+            print("The difference of " + floatArrayToString($nums, ", ") + " is " + Diff($nums)+"\n"); 
+            break;
+        case "Mult":
+            print("The product of " + floatArrayToString($nums, ", ") + " is " + Mult($nums)+"\n");
+            break;
+        case "Div":
+            print("The quotent of " + floatArrayToString($nums, ", ") + " is " + Div($nums)+"\n"); 
+            break;
+        case "Expo":
+            print("The power of " + floatArrayToString($nums, ", ") + " is " + Expo($nums)+"\n");
+            break;
+        case "Mean":
+            print("The mean of the list: " + floatArrayToString($nums, ", ") + " is " + Mean($nums)+"\n"); 
+            break;
+        case "Median":
+            print("The median of the list: " + floatArrayToString($nums, ", ") + " is " + Median($nums)+"\n"); 
+            break;
+        case "Mode":
+            print("The mode of the list: " + floatArrayToString($nums, ", ") + " is " + Mode($nums)+"\n");
+            break;
+    }
+}
+
+
+Calc("Add",{8,5,3,56,8});
+Calc("Diff",{8,5,3,56,8});
+Calc("Mult",{8,5,3,56,8});
+Calc("Div",{8,5,3,56,8});
+Calc("Expo",{8,5,3,56,8});
+Calc("Mean",{8,5,3,56,8});
+Calc("Median",{8,5,3,56,8});
+Calc("Mode",{8,5,3,56,8});
