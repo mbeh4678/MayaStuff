@@ -1,0 +1,11 @@
+global proc randPlaceGen(int $duplicates, float $xMin, float $xMax, float $yMin, float $yMax, float $zMin, float $zMax){
+    string $selObjs[] = `ls -sl`;
+    string $dupes[];
+    for( $i= 0; $i < $duplicates; $i++){
+        $dupes = `duplicate $selObjs`;
+
+    }
+    print($dupes);
+}
+
+randPlaceGen(3, 0, 10, 0 ,10 , 0, 10);
