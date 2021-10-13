@@ -3,9 +3,10 @@ global proc randPlaceGen(int $duplicates, float $xMin, float $xMax, float $yMin,
     string $dupes[];
     for( $i= 0; $i < $duplicates; $i++){
         $dupes = `duplicate $selObjs`;
-
+        for($j in $dupes){
+            move (`rand $xMin $xMax`) (`rand $yMin $yMax`)(`rand $zMin $zMax`) $j;
+        }
     }
-    print($dupes);
 }
 
-randPlaceGen(3, 0, 10, 0 ,10 , 0, 10);
+randPlaceGen(20, -10, 10, 0 ,0 , -10, 10);

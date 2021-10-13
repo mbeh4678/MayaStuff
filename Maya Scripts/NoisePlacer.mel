@@ -1,0 +1,19 @@
+global proc randPlaceGen(int $duplicates, float $scale, float $xMin, float $xMax, float $yMin, float $yMax, float $zMin, float $zMax){
+    string $selObjs[] = `ls -sl`;
+    string $dupes[];
+    for( $i= 0; $i < $duplicates; $i++){
+        $dupes = `duplicate $selObjs`;
+        for($j in $dupes){
+            move (`rand $xMin $xMax`) (0)(`rand $zMin $zMax`) $j;
+            float $xPos = `objectCenter -x $j`;
+            float $zPos = `objectCenter -z $j`;
+            float $nScale = noise($xPos,$zPos) * .5;
+            scale $nScale $nScale $nScale $j;
+            
+        }
+    }
+}
+
+
+
+randPlaceGen(10000, 1, -10, 10, 0 ,0 , -10, 10);
