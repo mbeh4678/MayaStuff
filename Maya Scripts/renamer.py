@@ -8,8 +8,7 @@ tags = int(scheme.count("#"))
 scheme = scheme.partition("#"*tags)
 
 print(scheme)
-for i in items:
-    count+=1
+for count, i in enumerate(items,start=1):
     cmds.rename(i,f"{scheme[0]+str(count).zfill(tags)+scheme[-1]}")
 
 
