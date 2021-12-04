@@ -4,7 +4,7 @@ import importlib
 importlib.reload(ColorChanger)
 
 
-def Orienter(color):
+def newControll(color):
 
     targets = cmds.ls(selection = True)
     if len(targets) == 0 :
@@ -20,4 +20,4 @@ def Orienter(color):
             ColorChanger.changeColor(color)
 
 
-Orienter(8)
+newControll(8)
