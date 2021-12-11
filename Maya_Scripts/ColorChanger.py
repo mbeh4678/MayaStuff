@@ -10,9 +10,7 @@ def changeColor(input):
         colIndex = input
 
     items = cmds.ls(selection = True)
-    print(items)
     for i in items:
-        print(cmds.listRelatives(i, shapes=True))
         shape = "".join(cmds.listRelatives(i,shapes = True))
         cmds.setAttr(shape + '.overrideEnabled', 1)
         cmds.setAttr(shape + ".overrideColor", colIndex)

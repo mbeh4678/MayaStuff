@@ -11,8 +11,12 @@ def newControll(color):
         print('0')
     else:
         for t in targets:
-            baseName = str(next(i for i in t.rpartition('_') if i))
-            print(baseName)
+            if int(t.count('_')) > 1:
+                print('partition ' + t)
+                baseName = str(next(i for i in t.rpartition('_') if i))
+            else:
+                baseName = t
+            print(int(t.count('#')))
             ctrl = cmds.circle(normal = (0,1,0), name = f"{baseName}_Ctrl")[0]
             grp = cmds.group(ctrl, name = f"{baseName}_Ctrl_Grp")
             cmds.matchTransform(grp,t)
@@ -20,4 +24,3 @@ def newControll(color):
             ColorChanger.changeColor(color)
 
 
-newControll(8)
