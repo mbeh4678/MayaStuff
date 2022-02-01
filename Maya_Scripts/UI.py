@@ -34,6 +34,7 @@ class ToolUI():
 
         cmds.button(parent=column, label='Show Joint Orient', command=lambda *x: self.display_joint_orient())
         cmds.button(parent=column, label='Replace', command=lambda *x: self.replaceObject())
+        cmds.button(parent=column, label='Constrain With Toggles', command=lambda *x: self.constrainWToggles())
         cmds.button(parent=column, label='Constrain', command=lambda *x: self.constrain())
 
         cmds.showWindow(self.window)
@@ -66,7 +67,7 @@ class ToolUI():
         cmds.delete(sels[1])
         cmds.rename(sels[0], newName)
 
-    def constrain(self):
+    def constrainWToggles(self):
 
         sels = cmds.ls(sl=True)
 
@@ -89,3 +90,12 @@ class ToolUI():
 
         cmds.connectAttr(f'{ctrl}.FollowTranslate', f'{t_constraint}.w0', force=True)
         cmds.connectAttr(f'{ctrl}.FollowRotate', f'{r_constraint}.w0', force=True)
+
+    def constrain(self):
+        sels = cmds.ls(sl=True)
+
+        parent = sels[0]
+        child = sels[1]
+
+        cmds.parentConstraint(parent, child, maintainOffset=True, weight = 1)
+        cmds.scaleConstraint(parent, child, maintainOffset=True, weight=1)
