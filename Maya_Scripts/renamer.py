@@ -1,6 +1,7 @@
 import maya.cmds as cmds
 
-def rename(scheme):
+def rename(scheme): #example scheme:
+
 
     items = cmds.ls(selection = True)
     count = 0

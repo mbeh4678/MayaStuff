@@ -17,7 +17,7 @@ def newControll(color):
             else:
                 baseName = t
             print(int(t.count('#')))
-            ctrl = cmds.circle(normal = (0,1,0), name = f"{baseName}_Ctrl")[0]
+            ctrl = cmds.circle(normal = (1,0,0), name = f"{baseName}_Ctrl")[0]
             grp = cmds.group(ctrl, name = f"{baseName}_Ctrl_Grp")
             cmds.matchTransform(grp,t)
             cmds.select(ctrl, replace = True)

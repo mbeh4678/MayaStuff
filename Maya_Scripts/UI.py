@@ -7,7 +7,6 @@ class ToolUI():
         self.window = 'UIWindow'
         pass
 
-
     def createWin(self):
         import Orienter
         import renamer
@@ -31,6 +30,9 @@ class ToolUI():
         cmds.button(parent=column, label='Apply Color', command=
                     lambda x: ColorChanger.changeColor(cmds.colorIndexSliderGrp(col, q=True, value=True)-1))
 
+        cmds.button(parent=column, label='Show Joint Orient', command=lambda *x: self.display_joint_orient())
+        cmds.button(parent=column, label='Replace', command=lambda *x: self.replaceObject())
+
         cmds.showWindow(self.window)
 
     def delete(self):
@@ -39,5 +41,27 @@ class ToolUI():
 
 
 
-myUI = ToolUI()
-myUI.createWin()
+#   myUI = ToolUI()
+#   myUI.createWin()
+
+
+    def display_joint_orient(self):
+        sels = cmds.ls(sl=True)
+
+        for sel in sels:
+            if cmds.nodeType(sel) == 'joint':
+                state = cmds.getAttr(f'{sel}.displayLocalAxis')
+                cmds.setAttr(f'{sel}.displayLocalAxis', not state)
+                cmds.setAttr(f'{sel}.jointOrientX', keyable=not state, channelBox= not state)
+                cmds.setAttr(f'{sel}.jointOrientX', keyable=not state, channelBox= not state)
+                cmds.setAttr(f'{sel}.jointOrientX', keyable=not state, channelBox= not state)
+
+    #   display_joint_orient()
+
+    def replaceObject(self):
+        sels = cmds.ls(sl=True)
+        newName = sels[1]
+        newParent = cmds.listRelatives(sels[1], parent=True)
+        cmds.parent(sels[0], newParent)
+        cmds.delete(sels[1])
+        cmds.rename(sels[0], newName)
