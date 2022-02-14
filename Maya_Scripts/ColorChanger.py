@@ -12,7 +12,7 @@ def changeColor(input):
     items = cmds.ls(selection = True)
     for i in items:
         shape = "".join(cmds.listRelatives(i,shapes = True))
-        cmds.setAttr(shape + '.overrideEnabled', 1)
+        cmds.setAttr(shape + ".overrideEnabled", 1)
         cmds.setAttr(shape + ".overrideColor", colIndex)
 
 
