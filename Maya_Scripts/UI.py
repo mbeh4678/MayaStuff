@@ -29,8 +29,9 @@ class ToolUI():
                                   command=lambda x: Orienter.newControll(
                                       cmds.colorIndexSliderGrp(col, q=True, value=True) - 1))
         col = cmds.colorIndexSliderGrp(label='Select Color', min=0, max=20, value=15, )
+        colorState = cmds.radioButtonGrp(label='Three Buttons', labelArray2=['Shape', 'Bone'], numberOfRadioButtons=2)
         cmds.button(parent=column, label='Apply Color', command=
-        lambda x: ColorChanger.changeColor(cmds.colorIndexSliderGrp(col, q=True, value=True) - 1))
+        lambda x: ColorChanger.changeColor(cmds.colorIndexSliderGrp(col, q=True, value=True) - 1, cmds.radioButtonGrp(colorState, q=True, select=True)))
 
         cmds.button(parent=column, label='Show Joint Orient', command=lambda *x: self.display_joint_orient())
         cmds.button(parent=column, label='Replace', command=lambda *x: self.replaceObject())
