@@ -100,3 +100,9 @@ class ToolUI():
 
         cmds.parentConstraint(parent, child, maintainOffset=True, weight = 1)
         cmds.scaleConstraint(parent, child, maintainOffset=True, weight=1)
+
+        parent = parent.rsplit('_',1)[0]
+
+
+
+        cmds.rename(child, f"{parent}_Geo")
