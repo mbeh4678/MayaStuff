@@ -29,7 +29,7 @@ class ToolUI():
                                   command=lambda x: Orienter.newControll(
                                       cmds.colorIndexSliderGrp(col, q=True, value=True) - 1))
         col = cmds.colorIndexSliderGrp(label='Select Color', min=0, max=20, value=15, )
-        colorState = cmds.radioButtonGrp(label='Three Buttons', labelArray2=['Shape', 'Bone'], numberOfRadioButtons=2)
+        colorState = cmds.radioButtonGrp(label='Select Object Type:', labelArray2=['Shape', 'Bone'], numberOfRadioButtons=2)
         cmds.button(parent=column, label='Apply Color', command=
         lambda x: ColorChanger.changeColor(cmds.colorIndexSliderGrp(col, q=True, value=True) - 1, cmds.radioButtonGrp(colorState, q=True, select=True)))
 
@@ -37,6 +37,9 @@ class ToolUI():
         cmds.button(parent=column, label='Replace', command=lambda *x: self.replaceObject())
         cmds.button(parent=column, label='Constrain With Toggles', command=lambda *x: self.constrainWToggles())
         cmds.button(parent=column, label='Constrain', command=lambda *x: self.constrain())
+
+        jointRadius = cmds.textFieldButtonGrp(label='Joint Radius', placeholderText='1', buttonLabel='Set',
+                                       buttonCommand=lambda *x: self.setJntRadius(cmds.textFieldButtonGrp(jointRadius, q=True, text=True)))
 
         cmds.showWindow(self.window)
 
@@ -46,6 +49,14 @@ class ToolUI():
 
     #   myUI = ToolUI()
     #   myUI.createWin()
+
+    def setJntRadius(self, radius):
+
+        sels = cmds.ls(sl=True)
+
+        for sel in sels:
+            if cmds.nodeType(sel) == 'joint':
+                cmds.setAttr(f'{sel}.radius', float(radius))
 
     def display_joint_orient(self):
         sels = cmds.ls(sl=True)
