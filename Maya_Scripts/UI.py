@@ -37,6 +37,7 @@ class ToolUI():
         cmds.button(parent=column, label='Replace', command=lambda *x: self.replaceObject())
         cmds.button(parent=column, label='Constrain With Toggles', command=lambda *x: self.constrainWToggles())
         cmds.button(parent=column, label='Constrain', command=lambda *x: self.constrain())
+        cmds.button(parent=column, label='Constrain Controls', command=lambda *x: self.constrainControls())
 
         jointRadius = cmds.textFieldButtonGrp(label='Joint Radius', placeholderText='1', buttonLabel='Set',
                                        buttonCommand=lambda *x: self.setJntRadius(cmds.textFieldButtonGrp(jointRadius, q=True, text=True)))
@@ -111,3 +112,18 @@ class ToolUI():
 
         cmds.parentConstraint(parent, child, maintainOffset=True, weight = 1)
         cmds.scaleConstraint(parent, child, maintainOffset=True, weight=1)
+
+    def constrainControls(self):
+        sels = cmds.ls(sl=True)
+
+        parent = sels[0]
+        child = sels[1]
+
+        child = cmds.listRelatives(child, parent=True)[0]
+
+        cmds.parentConstraint(parent, child, maintainOffset=True, weight=1)
+        cmds.scaleConstraint(parent, child, maintainOffset=True, weight=1)
+
+
+
+
