@@ -23,3 +23,25 @@ def changeColor(input,ColorShapeNode):
 
 
 #changeColor(14)
+
+
+import maya.cmds as cmds
+
+
+def mirrorControl(ctrl, currentSide='R_', newSide='L_'):
+    parent = cmds.listRelatives(ctrl, p=True)[0]
+    dup = cmds.duplicate(parent, n=parent.replace(currentSide, newSide))[0]
+    sclGrp = cmds.group(em=True, world=True)
+    cmds.parent(dup, sclGrp)
+    cmds.setAttr(sclGrp + '.sx', - 1)
+
+    try:
+        cmds.parent(dup, cmds.listRelatives(parent, p=True)[0])
+    except:
+        cmds.parent(dup, world=True)
+    cmds.delete(sclGrp)
+
+    [cmds.rename(obj, obj.replace(currentSide, newSide)) for obj in cmds.listRelatives(dup, ad=True, s=True)]
+
+for obj in cmds.ls(sl=True):
+    mirrorControl(obj, 'R_', 'L_')
